@@ -19,9 +19,17 @@ namespace Phauthentic\Infrastructure\Storage\Factories;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
 use MicrosoftAzure\Storage\Common\ServicesBuilder;
+use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use Phauthentic\Infrastructure\Storage\Factories\Exception\FactoryConfigException;
+use Phauthentic\Infrastructure\Storage\Factories\Exception\FactoryException;
 
 /**
- * AzureFactory
+ * Azure Factory
+ *
+ * Be aware that this adapter seems to have some problems!
+ *
+ * @link https://github.com/thephpleague/flysystem-azure/issues/22
+ * @link https://github.com/thephpleague/flysystem-azure/issues/15
  */
 class AzureFactory extends AbstractFactory
 {
@@ -37,17 +45,27 @@ class AzureFactory extends AbstractFactory
     public function build($config): AdapterInterface
     {
         $this->availabilityCheck();
+        $this->checkConfig($config);
 
         $endpoint = sprintf(
             $this->endpoint,
-            base64_encode($config['accountName'] ?? ''),
-            base64_encode($config['apiKey'] ?? '')
+            base64_encode($config['accountName']),
+            base64_encode($config['apiKey'])
         );
 
+        $client = BlobRestProxy::createBlobService($endpoint);
 
-        return new AzureBlobStorageAdapter(
-            ServicesBuilder::getInstance()->createBlobService($endpoint),
-            $config['container']
-        );
+        return new AzureBlobStorageAdapter($client, $config['accountName']);
+    }
+
+    protected function checkConfig(array $config): void
+    {
+        if (empty($config['accountName'])) {
+            throw FactoryConfigException::withMissingKey('apiKey', $this);
+        }
+
+        if (empty($config['apiKey'])) {
+            throw FactoryConfigException::withMissingKey('apiKey', $this);
+        }
     }
 }

@@ -14,26 +14,22 @@
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace Phauthentic\Infrastructure\Storage\Factories\Exception;
 
-use League\Flysystem\AdapterInterface;
-use League\Flysystem\Config;
-use League\Flysystem\Memory\MemoryAdapter;
+use Phauthentic\Infrastructure\Storage\Exception\StorageException;
+use Phauthentic\Infrastructure\Storage\Factories\FactoryInterface;
 
 /**
- * Memory
+ * FactoryConfigException
  */
-class MemoryFactory extends AbstractFactory
+class FactoryConfigException extends FactoryException
 {
-    protected string $alias = 'memory';
-    protected ?string $package = 'league/flysystem-memory';
-    protected string $className = MemoryAdapter::class;
-
-    /**
-     * @inheritDoc
-     */
-    public function build(array $config): AdapterInterface
+    public static function withMissingKey(string $key, FactoryInterface $factory)
     {
-        return new MemoryAdapter();
+        return new self(sprintf(
+            'Config key `%s` for `%s` is empty or missing',
+            $key,
+            get_class($factory)
+        ));
     }
 }
