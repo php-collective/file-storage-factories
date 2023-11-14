@@ -7,17 +7,17 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
 use League\Flysystem\Adapter\Ftp;
+use League\Flysystem\AdapterInterface;
 
 /**
  * FtpFactory
@@ -25,8 +25,11 @@ use League\Flysystem\Adapter\Ftp;
 class FtpFactory extends AbstractFactory
 {
     protected string $alias = 'ftp';
-    protected ?string $package = 'league/flysystem';
+
+    protected string $package = 'league/flysystem';
+
     protected string $className = Ftp::class;
+
     protected array $defaults = [
         'host' => '',
         'username' => '',

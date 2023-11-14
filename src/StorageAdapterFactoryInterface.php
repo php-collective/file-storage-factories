@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage;
+namespace PhpCollective\Infrastructure\Storage;
 
 use League\Flysystem\AdapterInterface;
 
@@ -28,6 +28,7 @@ interface StorageAdapterFactoryInterface
      *
      * @param string $adapterClass Adapter alias or classname
      * @param array $options Options array
+     *
      * @return \League\Flysystem\AdapterInterface
      */
     public function buildStorageAdapter(

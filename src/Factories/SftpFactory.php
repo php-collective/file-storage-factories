@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Sftp\SftpAdapter;
@@ -25,8 +25,11 @@ use League\Flysystem\Sftp\SftpAdapter;
 class SftpFactory extends AbstractFactory
 {
     protected string $alias = 'sftp';
-    protected ?string $package = 'league/flysystem-sftp';
+
+    protected string $package = 'league/flysystem-sftp';
+
     protected string $className = SftpAdapter::class;
+
     protected array $defaults = [
         'host' => '',
         'port' => 22,
@@ -36,7 +39,7 @@ class SftpFactory extends AbstractFactory
         'passphrase' => '',
         'root' => '/',
         'timeout' => 10,
-        'directoryPerm' => 0755
+        'directoryPerm' => 0755,
     ];
 
     /**

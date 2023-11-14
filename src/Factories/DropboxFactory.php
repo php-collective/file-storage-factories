@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
 use Spatie\Dropbox\Client;
@@ -26,10 +26,13 @@ use Spatie\FlysystemDropbox\DropboxAdapter;
 class DropboxFactory extends AbstractFactory
 {
     protected string $alias = 'null';
-    protected ?string $package = 'spatie/flysystem-dropbox';
+
+    protected string $package = 'spatie/flysystem-dropbox';
+
     protected string $className = DropboxAdapter::class;
+
     protected array $defaults = [
-        'authToken' => ''
+        'authToken' => '',
     ];
 
     /**

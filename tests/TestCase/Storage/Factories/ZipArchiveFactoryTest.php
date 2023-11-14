@@ -7,18 +7,18 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Storage\Test\TestCase\Storage\Factories;
+namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
 use League\Flysystem\ZipArchive\ZipArchiveAdapter;
-use Phauthentic\Infrastructure\Storage\Factories\ZipArchiveFactory;
-use Phauthentic\Storage\Test\TestCase\StorageTestCase as TestCase;
+use PhpCollective\Infrastructure\Storage\Factories\ZipArchiveFactory;
+use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
 /**
  * ZipArchiveFactoryTest
@@ -35,7 +35,7 @@ class ZipArchiveFactoryTest extends TestCase
 
         $factory = new ZipArchiveFactory();
         $adapter = $factory->build([
-            'location' => $file
+            'location' => $file,
         ]);
         $this->assertInstanceOf(ZipArchiveAdapter::class, $adapter);
     }

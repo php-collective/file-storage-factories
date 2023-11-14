@@ -5,21 +5,19 @@ on: [push, pull_request]
 jobs:
   testsuite:
     name: Unittests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0']
+        php-version: ['8.1', '8.3']
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '8.1'
         extensions: mbstring, json, fileinfo
         tools: pecl
         coverage: pcov
@@ -32,46 +30,38 @@ jobs:
           composer install
         fi
 
-    - name: Phive install
-      run: php config/composer_phive.php
-
     - name: Run PHPUnit
       run: |
-        if [[ ${{ matrix.php-version }} == '7.4' ]]; then
+        if [[ ${{ matrix.php-version }} == '8.1' ]]; then
           bin/phpunit --coverage-clover=coverage.xml
         else
           bin/phpunit
         fi
 
     - name: Code Coverage Report
-      if: success() && matrix.php-version == '7.4'
+      if: success() && matrix.php-version == '8.1'
       uses: codecov/codecov-action@v1
 
   cs-stan:
     name: Coding Standard & Static Analysis
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+    - uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '8.1'
         extensions: mbstring, json, fileinfo
         coverage: none
         tools: pecl
 
     - name: Composer install
-      run: composer update --prefer-lowest --prefer-stable
-
-    - name: Phive install
-      run: php config/composer_phive.php
+      run: composer update --prefer-stable
 
     - name: Run phpcs
-      run: bin/phpcs --version && bin/phpcs --report=checkstyle --standard=phpcs.xml src/ tests/
+      run: bin/phpcs --version && bin/phpcs --report=checkstyle
 
     - name: Run phpstan
-      run: bin/phpstan -V && bin/phpstan analyse src -l 5 --error-format=github
+      run: bin/phpstan -V && bin/phpstan analyze --error-format=github

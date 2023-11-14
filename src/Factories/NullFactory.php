@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\Adapter\NullAdapter;
 use League\Flysystem\AdapterInterface;
@@ -26,6 +26,7 @@ use League\Flysystem\AwsS3v3\AwsS3Adapter;
 class NullFactory extends AbstractFactory
 {
     protected string $alias = 'null';
+
     protected string $className = AwsS3Adapter::class;
 
     /**

@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
 
@@ -24,7 +24,15 @@ use League\Flysystem\AdapterInterface;
 interface FactoryInterface
 {
     public function className(): string;
+
     public function alias(): string;
+
+    /**
+     * @param array<string, mixed> $config
+     *
+     * @return \League\Flysystem\AdapterInterface
+     */
     public function build(array $config): AdapterInterface;
+
     public function availabilityCheck(): void;
 }

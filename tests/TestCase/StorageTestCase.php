@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Storage\Test\TestCase;
+namespace PhpCollective\Storage\Test\TestCase;
 
 use PHPUnit\Framework\TestCase;
 
@@ -57,6 +57,7 @@ class StorageTestCase extends TestCase
 
     /**
      * @param string $path Path
+     *
      * @return string
      */
     public function getFixtureFile($path): string

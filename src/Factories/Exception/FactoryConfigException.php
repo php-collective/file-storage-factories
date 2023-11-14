@@ -7,29 +7,28 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories\Exception;
+namespace PhpCollective\Infrastructure\Storage\Factories\Exception;
 
-use Phauthentic\Infrastructure\Storage\Exception\StorageException;
-use Phauthentic\Infrastructure\Storage\Factories\FactoryInterface;
+use PhpCollective\Infrastructure\Storage\Factories\FactoryInterface;
 
 /**
  * FactoryConfigException
  */
 class FactoryConfigException extends FactoryException
 {
-    public static function withMissingKey(string $key, FactoryInterface $factory)
+    public static function withMissingKey(string $key, FactoryInterface $factory): self
     {
         return new self(sprintf(
             'Config key `%s` for `%s` is empty or missing',
             $key,
-            get_class($factory)
+            get_class($factory),
         ));
     }
 }

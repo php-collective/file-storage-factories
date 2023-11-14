@@ -7,19 +7,18 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\AdapterInterface;
-use Phauthentic\Infrastructure\Storage\Exception\PackageRequiredException;
-use Phauthentic\Infrastructure\Storage\InstantiateTrait;
+use PhpCollective\Infrastructure\Storage\Exception\PackageRequiredException;
 
 /**
  * AbstractFactory
@@ -32,9 +31,9 @@ abstract class AbstractFactory implements FactoryInterface
     protected string $alias = 'local';
 
     /**
-     * @var string|null
+     * @var string
      */
-    protected ?string $package = 'league/flysystem';
+    protected string $package = 'league/flysystem';
 
     /**
      * @var string
@@ -58,6 +57,8 @@ abstract class AbstractFactory implements FactoryInterface
     }
 
     /**
+     * @throws \PhpCollective\Infrastructure\Storage\Exception\PackageRequiredException
+     *
      * @return void
      */
     public function availabilityCheck(): void
@@ -65,7 +66,7 @@ abstract class AbstractFactory implements FactoryInterface
         if (!class_exists($this->className)) {
             throw PackageRequiredException::fromAdapterAndPackageNames(
                 $this->alias,
-                $this->package
+                $this->package,
             );
         }
     }

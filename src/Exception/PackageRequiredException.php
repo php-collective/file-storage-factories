@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Exception;
+namespace PhpCollective\Infrastructure\Storage\Exception;
 
 /**
  * PackageRequiredException
@@ -24,6 +24,7 @@ class PackageRequiredException extends StorageException
     /**
      * @param string $adapter Adapter
      * @param string $package Package
+     *
      * @return self
      */
     public static function fromAdapterAndPackageNames(string $adapter, string $package): self
@@ -31,7 +32,7 @@ class PackageRequiredException extends StorageException
         return new self(sprintf(
             'Adapter `%s` requires package `%s`',
             $adapter,
-            $package
+            $package,
         ));
     }
 }

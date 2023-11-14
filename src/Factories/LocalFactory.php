@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\AdapterInterface;
@@ -25,7 +25,9 @@ use League\Flysystem\AdapterInterface;
 class LocalFactory extends AbstractFactory
 {
     protected string $alias = 'local';
-    protected ?string $package = 'league/flysystem';
+
+    protected string $package = 'league/flysystem';
+
     protected string $className = Local::class;
 
     public function build(array $config): AdapterInterface

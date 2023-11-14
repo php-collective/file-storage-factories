@@ -7,21 +7,19 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
-use MicrosoftAzure\Storage\Common\ServicesBuilder;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use Phauthentic\Infrastructure\Storage\Factories\Exception\FactoryConfigException;
-use Phauthentic\Infrastructure\Storage\Factories\Exception\FactoryException;
+use PhpCollective\Infrastructure\Storage\Factories\Exception\FactoryConfigException;
 
 /**
  * Azure Factory
@@ -34,10 +32,12 @@ use Phauthentic\Infrastructure\Storage\Factories\Exception\FactoryException;
 class AzureFactory extends AbstractFactory
 {
     protected string $alias = 'azure';
-    protected ?string $package = 'league/flysystem-azure-blob-storage';
+
+    protected string $package = 'league/flysystem-azure-blob-storage';
+
     protected string $className = AzureBlobStorageAdapter::class;
 
-    protected $endpoint = 'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s';
+    protected string $endpoint = 'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s';
 
     /**
      * @inheritDoc
@@ -50,7 +50,7 @@ class AzureFactory extends AbstractFactory
         $endpoint = sprintf(
             $this->endpoint,
             base64_encode($config['accountName']),
-            base64_encode($config['apiKey'])
+            base64_encode($config['apiKey']),
         );
 
         $client = BlobRestProxy::createBlobService($endpoint);
@@ -58,6 +58,11 @@ class AzureFactory extends AbstractFactory
         return new AzureBlobStorageAdapter($client, $config['accountName']);
     }
 
+    /**
+     * @throws \PhpCollective\Infrastructure\Storage\Factories\Exception\FactoryConfigException
+     *
+     * @return void
+     */
     protected function checkConfig(array $config): void
     {
         if (empty($config['accountName'])) {

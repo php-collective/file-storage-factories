@@ -7,20 +7,20 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Storage\Test\TestCase\Storage\Factories;
+namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
 use League\Flysystem\Adapter\NullAdapter;
 use League\Flysystem\Replicate\ReplicateAdapter;
-use Phauthentic\Infrastructure\Storage\Factories\Exception\FactoryException;
-use Phauthentic\Infrastructure\Storage\Factories\ReplicateFactory;
-use Phauthentic\Storage\Test\TestCase\StorageTestCase as TestCase;
+use PhpCollective\Infrastructure\Storage\Factories\Exception\FactoryException;
+use PhpCollective\Infrastructure\Storage\Factories\ReplicateFactory;
+use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
 /**
  * ReplicateFactoryTest

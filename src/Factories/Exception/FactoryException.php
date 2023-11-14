@@ -7,21 +7,20 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories\Exception;
+namespace PhpCollective\Infrastructure\Storage\Factories\Exception;
 
-use Phauthentic\Infrastructure\Storage\Exception\StorageException;
+use PhpCollective\Infrastructure\Storage\Exception\StorageException;
 
 /**
  * FactoryException
  */
 class FactoryException extends StorageException
 {
-
 }

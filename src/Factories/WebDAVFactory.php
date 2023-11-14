@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Factories;
+namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\WebDAV\WebDAVAdapter;
@@ -26,8 +26,11 @@ use Sabre\DAV\Client;
 class WebDAVFactory extends AbstractFactory
 {
     protected string $alias = 'webdav';
-    protected ?string $package = 'league/flysystem-webdav';
+
+    protected string $package = 'league/flysystem-webdav';
+
     protected string $className = WebDAVAdapter::class;
+
     protected array $defaults = [
         'baseUri' => '',
         'userName' => '',

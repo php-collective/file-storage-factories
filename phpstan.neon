@@ -1,4 +1,8 @@
 parameters:
-	level: 5
+	level: 8
 	paths:
-		- src
+		- src/
+	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
+	ignoreErrors:
+		- '#Call to an undefined static method .+BlobRestProxy::createBlobService\(\).#'

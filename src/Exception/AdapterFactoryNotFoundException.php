@@ -7,14 +7,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage\Exception;
+namespace PhpCollective\Infrastructure\Storage\Exception;
 
 /**
  * AdapterNotSupportedException
@@ -23,13 +23,14 @@ class AdapterFactoryNotFoundException extends StorageException
 {
     /**
      * @param string $name Name
+     *
      * @return self
      */
     public static function fromName(string $name): self
     {
         return new self(sprintf(
             'Adapter factory `%s` was not found',
-            $name
+            $name,
         ));
     }
 }

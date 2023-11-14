@@ -7,17 +7,17 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Infrastructure\Storage;
+namespace PhpCollective\Infrastructure\Storage;
 
 use League\Flysystem\AdapterInterface;
-use Phauthentic\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException;
+use PhpCollective\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -33,9 +33,8 @@ class StorageAdapterFactory implements StorageAdapterFactoryInterface
     /**
      * @param \Psr\Container\ContainerInterface|null $container Container
      */
-    public function __construct(
-        ?ContainerInterface $container = null
-    ) {
+    public function __construct(?ContainerInterface $container = null)
+    {
         $this->container = $container;
     }
 
@@ -44,16 +43,21 @@ class StorageAdapterFactory implements StorageAdapterFactoryInterface
      *
      * @param string $adapterClass Adapter alias or classname
      * @param array $options Options
+     *
      * @return \League\Flysystem\AdapterInterface
      */
     public function buildStorageAdapter(
         string $adapterClass,
         array $options
     ): AdapterInterface {
+        /** @var class-string<\PhpCollective\Infrastructure\Storage\Factories\FactoryInterface> $adapterClass */
         $adapterClass = $this->checkAndResolveAdapterClass($adapterClass);
 
         if ($this->container !== null) {
-            return $this->container->get($adapterClass)->build($options);
+            /** @var \PhpCollective\Infrastructure\Storage\Factories\FactoryInterface $factory */
+            $factory = $this->container->get($adapterClass);
+
+            return $factory->build($options);
         }
 
         return (new $adapterClass())->build($options);
@@ -61,12 +65,15 @@ class StorageAdapterFactory implements StorageAdapterFactoryInterface
 
     /**
      * @param string $adapterClass Adapter Class name or string
+     *
+     * @throws \PhpCollective\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException
+     *
      * @return string
      */
     protected function checkAndResolveAdapterClass(string $adapterClass): string
     {
         if (!class_exists($adapterClass)) {
-            $adapterClass = '\Phauthentic\Infrastructure\Storage\Factories\\' . $adapterClass . 'Factory';
+            $adapterClass = '\PhpCollective\Infrastructure\Storage\Factories\\' . $adapterClass . 'Factory';
         }
 
         if (!class_exists($adapterClass)) {

@@ -7,18 +7,18 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Florian Krämer (https://florian-kraemer.net)
- * @author    Florian Krämer
- * @link      https://github.com/Phauthentic
- * @license   https://opensource.org/licenses/MIT MIT License
+ * @author Florian Krämer
+ * @link https://github.com/Phauthentic
+ * @license https://opensource.org/licenses/MIT MIT License
  */
 
 declare(strict_types=1);
 
-namespace Phauthentic\Storage\Test\TestCase\Storage\Factories;
+namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
 use League\Flysystem\WebDAV\WebDAVAdapter;
-use Phauthentic\Infrastructure\Storage\Factories\WebDAVFactory;
-use Phauthentic\Storage\Test\TestCase\StorageTestCase as TestCase;
+use PhpCollective\Infrastructure\Storage\Factories\WebDAVFactory;
+use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
 /**
  * WebDavFactoryTest
@@ -32,7 +32,7 @@ class WebDavFactoryTest extends TestCase
     {
         $factory = new WebDAVFactory();
         $adapter = $factory->build([
-            'baseUri' => '/'
+            'baseUri' => '/',
         ]);
         $this->assertInstanceOf(WebDAVAdapter::class, $adapter);
     }
