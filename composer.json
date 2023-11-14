@@ -95,8 +95,6 @@
     },
     "config": {
         "sort-packages": true,
-        "bin-dir": "bin",
-        "process-timeout": 0,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
