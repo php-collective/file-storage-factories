@@ -20,6 +20,10 @@
         {
             "name": "Florian Krämer",
             "homepage": "https://florian-kraemer.net"
+        },
+        {
+            "name": "Mark Scherer",
+            "role": "Maintainer"
         }
     ],
     "minimum-stability": "stable",
