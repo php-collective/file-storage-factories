@@ -30,6 +30,7 @@ jobs:
           composer install
         fi
         composer why-not aws/aws-sdk-php 3.286.1
+        composer update "aws/aws-sdk-php:3.286.1" --dry-run
 
     - name: Run PHPUnit
       run: |
