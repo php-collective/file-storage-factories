@@ -27,8 +27,9 @@ jobs:
         if [[ ${{ matrix.prefer-lowest == 'prefer-lowest' }} ]]; then
           composer update --prefer-lowest --prefer-stable
         else
-          composer install && composer why-not aws/aws-sdk-php 3.286.1
+          composer install
         fi
+        composer why-not aws/aws-sdk-php 3.286.1
 
     - name: Run PHPUnit
       run: |
