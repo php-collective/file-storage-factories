@@ -14,9 +14,8 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\Adapter\NullAdapter;
-use League\Flysystem\AdapterInterface;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\FilesystemAdapter;
+use PhpCollective\Infrastructure\Storage\Adapter\NullFilesystemAdapter;
 
 /**
  * NullFactory
@@ -25,13 +24,13 @@ class NullFactory extends AbstractFactory
 {
     protected string $alias = 'null';
 
-    protected string $className = AwsS3Adapter::class;
+    protected string $className = NullFilesystemAdapter::class;
 
     /**
      * @inheritDoc
      */
-    public function build(array $config): AdapterInterface
+    public function build(array $config): FilesystemAdapter
     {
-        return new NullAdapter();
+        return new NullFilesystemAdapter();
     }
 }

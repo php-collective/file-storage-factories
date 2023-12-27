@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\FilesystemAdapter;
 
 /**
  * Factory Interface
@@ -34,9 +34,9 @@ interface FactoryInterface
     /**
      * @param array<string, mixed> $config
      *
-     * @return \League\Flysystem\AdapterInterface
+     * @return \League\Flysystem\FilesystemAdapter
      */
-    public function build(array $config): AdapterInterface;
+    public function build(array $config): FilesystemAdapter;
 
     /**
      * @return void

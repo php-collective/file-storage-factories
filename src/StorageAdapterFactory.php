@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Infrastructure\Storage;
 
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\FilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException;
 use Psr\Container\ContainerInterface;
 
@@ -42,12 +42,12 @@ class StorageAdapterFactory implements StorageAdapterFactoryInterface
      * @param string $adapterClass Adapter alias or classname
      * @param array $options Options
      *
-     * @return \League\Flysystem\AdapterInterface
+     * @return \League\Flysystem\FilesystemAdapter
      */
     public function buildStorageAdapter(
         string $adapterClass,
         array $options
-    ): AdapterInterface {
+    ): FilesystemAdapter {
         /** @var class-string<\PhpCollective\Infrastructure\Storage\Factories\FactoryInterface> $adapterClass */
         $adapterClass = $this->checkAndResolveAdapterClass($adapterClass);
 

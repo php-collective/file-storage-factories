@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\WebDAV\WebDAVAdapter;
 use Sabre\DAV\Client;
 
@@ -39,7 +39,7 @@ class WebDAVFactory extends AbstractFactory
     /**
      * @inheritDoc
      */
-    public function build(array $config): AdapterInterface
+    public function build(array $config): FilesystemAdapter
     {
         return new WebDAVAdapter(new Client($config));
     }
