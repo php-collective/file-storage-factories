@@ -12,10 +12,3 @@ In the underlying Flysystem implementation some adapters are more or less comple
 ## Support
 
 For bugs and feature requests, please use the [issues](https://github.com/php-collective/file-storage/issues) section of this repository.
-
-## License
-
-Copyright 2020, Florian Krämer
-
-Licensed under The MIT License
-Redistributions of files must retain the above copyright notice.
