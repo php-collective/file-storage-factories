@@ -59,13 +59,13 @@ jobs:
         php-version: '8.1'
         extensions: mbstring, json, fileinfo
         coverage: none
-        tools: pecl
+        tools: pecl, cs2pr
 
     - name: Composer install
       run: composer install
 
     - name: Run phpcs
-      run: vendor/bin/phpcs --version && vendor/bin/phpcs --report=checkstyle
+      run: vendor/bin/phpcs --version && vendor/bin/phpcs --report=checkstyle | cs2pr
 
     - name: Run phpstan
       run: vendor/bin/phpstan -V && vendor/bin/phpstan analyze --error-format=github
