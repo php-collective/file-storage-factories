@@ -14,7 +14,6 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
-use League\Flysystem\Adapter\NullAdapter;
 use PhpCollective\Infrastructure\Storage\Adapter\NullFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Factories\NullFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;

@@ -14,7 +14,6 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage;
 
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException;
 use PhpCollective\Infrastructure\Storage\StorageAdapterFactory;

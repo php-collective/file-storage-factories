@@ -14,7 +14,6 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Factories\LocalFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;

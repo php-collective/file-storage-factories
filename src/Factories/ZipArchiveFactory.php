@@ -17,7 +17,6 @@ namespace PhpCollective\Infrastructure\Storage\Factories;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\ZipArchive\FilesystemZipArchiveProvider;
 use League\Flysystem\ZipArchive\ZipArchiveAdapter;
-use League\Flysystem\ZipArchive\ZipArchiveProvider;
 
 /**
  * ZipArchiveFactory
