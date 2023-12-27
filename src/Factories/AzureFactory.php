@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Copyright (c) Florian Krämer (https://florian-kraemer.net)
@@ -11,8 +11,6 @@
  * @link https://github.com/Phauthentic
  * @license https://opensource.org/licenses/MIT MIT License
  */
-
-declare(strict_types=1);
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
@@ -59,6 +57,8 @@ class AzureFactory extends AbstractFactory
     }
 
     /**
+     * @param array $config
+     *
      * @throws \PhpCollective\Infrastructure\Storage\Factories\Exception\FactoryConfigException
      *
      * @return void

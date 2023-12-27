@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Copyright (c) Florian Krämer (https://florian-kraemer.net)
@@ -12,8 +12,6 @@
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-declare(strict_types=1);
-
 namespace PhpCollective\Infrastructure\Storage\Factories\Exception;
 
 use PhpCollective\Infrastructure\Storage\Factories\FactoryInterface;
@@ -23,6 +21,12 @@ use PhpCollective\Infrastructure\Storage\Factories\FactoryInterface;
  */
 class FactoryConfigException extends FactoryException
 {
+    /**
+     * @param string $key
+     * @param \PhpCollective\Infrastructure\Storage\Factories\FactoryInterface $factory
+     *
+     * @return self
+     */
     public static function withMissingKey(string $key, FactoryInterface $factory): self
     {
         return new self(sprintf(
