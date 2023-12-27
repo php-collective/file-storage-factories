@@ -14,8 +14,8 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
-use League\Flysystem\Memory\MemoryAdapter;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 
 /**
  * Memory
@@ -26,13 +26,13 @@ class MemoryFactory extends AbstractFactory
 
     protected string $package = 'league/flysystem-memory';
 
-    protected string $className = MemoryAdapter::class;
+    protected string $className = InMemoryFilesystemAdapter::class;
 
     /**
      * @inheritDoc
      */
-    public function build(array $config): AdapterInterface
+    public function build(array $config): FilesystemAdapter
     {
-        return new MemoryAdapter();
+        return new InMemoryFilesystemAdapter();
     }
 }

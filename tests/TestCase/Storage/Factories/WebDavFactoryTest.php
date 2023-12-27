@@ -15,7 +15,7 @@
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
 use League\Flysystem\WebDAV\WebDAVAdapter;
-use PhpCollective\Infrastructure\Storage\Factories\WebDAVFactory;
+use PhpCollective\Infrastructure\Storage\Factories\WebDavFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
 /**
@@ -28,7 +28,7 @@ class WebDavFactoryTest extends TestCase
      */
     public function testFactory(): void
     {
-        $factory = new WebDAVFactory();
+        $factory = new WebDavFactory();
         $adapter = $factory->build([
             'baseUri' => '/',
         ]);

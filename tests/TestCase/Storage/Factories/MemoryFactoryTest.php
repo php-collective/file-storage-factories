@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
-use League\Flysystem\Memory\MemoryAdapter;
+use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Factories\MemoryFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
@@ -30,6 +30,6 @@ class MemoryFactoryTest extends TestCase
     {
         $factory = new MemoryFactory();
         $result = $factory->build([]);
-        $this->assertInstanceOf(MemoryAdapter::class, $result);
+        $this->assertInstanceOf(InMemoryFilesystemAdapter::class, $result);
     }
 }

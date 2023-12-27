@@ -14,7 +14,8 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Exception\PackageRequiredException;
 use PhpCollective\Infrastructure\Storage\Factories\AbstractFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
@@ -36,11 +37,13 @@ class AbstractFactoryTest extends TestCase
             /**
              * @param array<string, mixed> $config
              *
-             * @return \League\Flysystem\AdapterInterface
+             * @return \League\Flysystem\FilesystemAdapter
              */
-            public function build(array $config): AdapterInterface
+            public function build(array $config): FilesystemAdapter
             {
                 $this->availabilityCheck();
+
+                $testAdapter = LocalFilesystemAdapter::class;
 
                 return new $testAdapter();
             }

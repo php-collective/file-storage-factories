@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Infrastructure\Storage;
 
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\FilesystemAdapter;
 
 /**
  * StorageFactory - Manages and instantiates storage engine adapters.
@@ -27,10 +27,10 @@ interface StorageAdapterFactoryInterface
      * @param string $adapterClass Adapter alias or classname
      * @param array $options Options array
      *
-     * @return \League\Flysystem\AdapterInterface
+     * @return \League\Flysystem\FilesystemAdapter
      */
     public function buildStorageAdapter(
         string $adapterClass,
         array $options
-    ): AdapterInterface;
+    ): FilesystemAdapter;
 }

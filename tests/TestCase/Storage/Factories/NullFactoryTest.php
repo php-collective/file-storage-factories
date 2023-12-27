@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
-use League\Flysystem\Adapter\NullAdapter;
+use PhpCollective\Infrastructure\Storage\Adapter\NullFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Factories\NullFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
@@ -30,6 +30,6 @@ class NullFactoryTest extends TestCase
     {
         $factory = new NullFactory();
         $adapter = $factory->build([]);
-        $this->assertInstanceOf(NullAdapter::class, $adapter);
+        $this->assertInstanceOf(NullFilesystemAdapter::class, $adapter);
     }
 }

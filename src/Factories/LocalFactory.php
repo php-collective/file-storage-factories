@@ -14,8 +14,7 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
 /**
  * LocalFactory
@@ -26,19 +25,19 @@ class LocalFactory extends AbstractFactory
 
     protected string $package = 'league/flysystem';
 
-    protected string $className = Local::class;
+    protected string $className = LocalFilesystemAdapter::class;
 
     /**
-     * @param array $config
+     * @param array<string, mixed> $config
      *
-     * @return \League\Flysystem\AdapterInterface
+     * @return \League\Flysystem\Local\LocalFilesystemAdapter
      */
-    public function build(array $config): AdapterInterface
+    public function build(array $config): LocalFilesystemAdapter
     {
         $this->availabilityCheck();
 
         $config += ['root' => '/'];
 
-        return new Local($config['root']);
+        return new LocalFilesystemAdapter($config['root']);
     }
 }

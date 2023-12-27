@@ -14,8 +14,8 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\AdapterInterface;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Exception\PackageRequiredException;
 
 /**
@@ -36,7 +36,7 @@ abstract class AbstractFactory implements FactoryInterface
     /**
      * @var string
      */
-    protected string $className = Local::class;
+    protected string $className = LocalFilesystemAdapter::class;
 
     /**
      * @return string
@@ -72,5 +72,5 @@ abstract class AbstractFactory implements FactoryInterface
     /**
      * @inheritDoc
      */
-    abstract public function build(array $config): AdapterInterface;
+    abstract public function build(array $config): FilesystemAdapter;
 }

@@ -14,39 +14,33 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
-use League\Flysystem\Sftp\SftpAdapter;
+use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\WebDAV\WebDAVAdapter;
+use Sabre\DAV\Client;
 
 /**
- * SftpFactory
+ * WebDavFactory
  */
-class SftpFactory extends AbstractFactory
+class WebDavFactory extends AbstractFactory
 {
-    protected string $alias = 'sftp';
+    protected string $alias = 'webdav';
 
-    protected string $package = 'league/flysystem-sftp';
+    protected string $package = 'league/flysystem-webdav';
 
-    protected string $className = SftpAdapter::class;
+    protected string $className = WebDAVAdapter::class;
 
     protected array $defaults = [
-        'host' => '',
-        'port' => 22,
-        'username' => '',
+        'baseUri' => '',
+        'userName' => '',
         'password' => '',
-        'privateKey' => '',
-        'passphrase' => '',
-        'root' => '/',
-        'timeout' => 10,
-        'directoryPerm' => 0755,
+        'proxy' => '',
     ];
 
     /**
      * @inheritDoc
      */
-    public function build(array $config): AdapterInterface
+    public function build(array $config): FilesystemAdapter
     {
-        $config += $this->defaults;
-
-        return new SftpAdapter($config);
+        return new WebDAVAdapter(new Client($config));
     }
 }

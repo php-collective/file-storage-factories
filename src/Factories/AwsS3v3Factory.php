@@ -15,8 +15,7 @@
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use Aws\S3\S3Client;
-use League\Flysystem\AdapterInterface;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\AwsS3V3\AwsS3V3Adapter;
 
 /**
  * AwsS3Factory
@@ -27,10 +26,10 @@ class AwsS3v3Factory extends AbstractFactory
 
     protected string $package = 'league/flysystem-aws-s3-v3';
 
-    protected string $className = AwsS3Adapter::class;
+    protected string $className = AwsS3V3Adapter::class;
 
     protected array $defaults = [
-        'bucket' => null,
+        'bucket' => '',
         'prefix' => '',
         'client' => [
             'region' => 'eu',
@@ -41,18 +40,17 @@ class AwsS3v3Factory extends AbstractFactory
     /**
      * @inheritDoc
      */
-    public function build(array $config): AdapterInterface
+    public function build(array $config): AwsS3V3Adapter
     {
         $this->availabilityCheck();
         $config += $this->defaults;
 
-        return new AwsS3Adapter(
+        return new AwsS3V3Adapter(
             S3Client::factory(
                 $config['client'],
             ),
             $config['bucket'],
             $config['prefix'],
-            $config,
         );
     }
 }

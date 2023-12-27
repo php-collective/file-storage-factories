@@ -1,5 +1,6 @@
 # Storage Factories for Flysystem
 
+[![CI](https://github.com/php-collective/file-storage-factories/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/php-collective/file-storage-factories/actions/workflows/ci.yml)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 In the underlying Flysystem implementation some adapters are more or less complex to build. Sometimes you have to compose multiple objects and feed them to an adapter. The factories take this burden away from you and provide you the same interface for all adapters. Just their config array options differ.

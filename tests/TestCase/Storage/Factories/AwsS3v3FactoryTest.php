@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\AwsS3V3\AwsS3V3Adapter;
 use PhpCollective\Infrastructure\Storage\Factories\AwsS3v3Factory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
@@ -30,6 +30,6 @@ class AwsS3v3FactoryTest extends TestCase
     {
         $factory = new AwsS3v3Factory();
         $adapter = $factory->build([]);
-        $this->assertInstanceOf(AwsS3Adapter::class, $adapter);
+        $this->assertInstanceOf(AwsS3V3Adapter::class, $adapter);
     }
 }
