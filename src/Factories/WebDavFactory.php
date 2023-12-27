@@ -19,9 +19,9 @@ use League\Flysystem\WebDAV\WebDAVAdapter;
 use Sabre\DAV\Client;
 
 /**
- * WebdavFactory
+ * WebDavFactory
  */
-class WebDAVFactory extends AbstractFactory
+class WebDavFactory extends AbstractFactory
 {
     protected string $alias = 'webdav';
 

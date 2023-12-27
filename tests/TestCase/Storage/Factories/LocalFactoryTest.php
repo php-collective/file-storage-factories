@@ -15,6 +15,7 @@
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
 use League\Flysystem\Adapter\Local;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Factories\LocalFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
 
@@ -32,6 +33,6 @@ class LocalFactoryTest extends TestCase
         $adapter = $factory->build([
             'root' => sys_get_temp_dir(),
         ]);
-        $this->assertInstanceOf(Local::class, $adapter);
+        $this->assertInstanceOf(LocalFilesystemAdapter::class, $adapter);
     }
 }

@@ -29,7 +29,7 @@ class AwsS3v3Factory extends AbstractFactory
     protected string $className = AwsS3V3Adapter::class;
 
     protected array $defaults = [
-        'bucket' => null,
+        'bucket' => '',
         'prefix' => '',
         'client' => [
             'region' => 'eu',

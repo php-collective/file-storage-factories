@@ -15,7 +15,9 @@
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\ZipArchive\FilesystemZipArchiveProvider;
 use League\Flysystem\ZipArchive\ZipArchiveAdapter;
+use League\Flysystem\ZipArchive\ZipArchiveProvider;
 
 /**
  * ZipArchiveFactory
@@ -35,11 +37,14 @@ class ZipArchiveFactory extends AbstractFactory
     {
         $defaults = [
             'location' => null,
-            'archive' => null,
-            'prefix' => null,
+            'root' => '',
+            'mimeTypeDetector' => null,
+            'visibility' => null,
         ];
         $config += $defaults;
 
-        return new ZipArchiveAdapter($config['location'], $config['archive'], $config['prefix']);
+        $provider = new FileSystemZipArchiveProvider($config['location']);
+
+        return new ZipArchiveAdapter($provider, $config['root'], $config['mimeTypeDetector'], $config['visibility']);
     }
 }
