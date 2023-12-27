@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Copyright (c) Florian Krämer (https://florian-kraemer.net)
@@ -12,31 +12,12 @@
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-declare(strict_types=1);
-
 namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
 use PhpCollective\Infrastructure\Storage\Exception\PackageRequiredException;
 use PhpCollective\Infrastructure\Storage\Factories\AbstractFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
-
-class TestFactory extends AbstractFactory
-{
-    protected string $className = 'DoesNotExist';
-
-    /**
-     * @param array<string, mixed> $config
-     *
-     * @return \League\Flysystem\AdapterInterface
-     */
-    public function build(array $config): AdapterInterface
-    {
-        $this->availabilityCheck();
-
-        return new $testAdapter();
-    }
-}
 
 /**
  * AwsS3FactoryTest
@@ -48,7 +29,22 @@ class AbstractFactoryTest extends TestCase
      */
     public function testFactory(): void
     {
-        $factory = new TestFactory();
+        $factory = new class extends AbstractFactory
+        {
+            protected string $className = 'DoesNotExist';
+
+            /**
+             * @param array<string, mixed> $config
+             *
+             * @return \League\Flysystem\AdapterInterface
+             */
+            public function build(array $config): AdapterInterface
+            {
+                $this->availabilityCheck();
+
+                return new $testAdapter();
+            }
+        };
         $this->assertEquals('local', $factory->alias());
         $this->assertEquals('DoesNotExist', $factory->className());
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * Copyright (c) Florian Krämer (https://florian-kraemer.net)
@@ -12,8 +12,6 @@
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-declare(strict_types=1);
-
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
 use League\Flysystem\AdapterInterface;
@@ -23,8 +21,14 @@ use League\Flysystem\AdapterInterface;
  */
 interface FactoryInterface
 {
+    /**
+     * @return string
+     */
     public function className(): string;
 
+    /**
+     * @return string
+     */
     public function alias(): string;
 
     /**
@@ -34,5 +38,8 @@ interface FactoryInterface
      */
     public function build(array $config): AdapterInterface;
 
+    /**
+     * @return void
+     */
     public function availabilityCheck(): void;
 }
