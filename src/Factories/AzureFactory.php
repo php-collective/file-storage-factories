@@ -14,8 +14,8 @@
 
 namespace PhpCollective\Infrastructure\Storage\Factories;
 
-use League\Flysystem\AdapterInterface;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
+use League\Flysystem\FilesystemAdapter;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use PhpCollective\Infrastructure\Storage\Factories\Exception\FactoryConfigException;
 
@@ -40,7 +40,7 @@ class AzureFactory extends AbstractFactory
     /**
      * @inheritDoc
      */
-    public function build($config): AdapterInterface
+    public function build($config): FilesystemAdapter
     {
         $this->availabilityCheck();
         $this->checkConfig($config);
@@ -57,7 +57,7 @@ class AzureFactory extends AbstractFactory
     }
 
     /**
-     * @param array $config
+     * @param array<string, mixed> $config
      *
      * @throws \PhpCollective\Infrastructure\Storage\Factories\Exception\FactoryConfigException
      *

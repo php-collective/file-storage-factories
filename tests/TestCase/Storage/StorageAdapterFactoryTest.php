@@ -14,7 +14,7 @@
 
 namespace PhpCollective\Storage\Test\TestCase\Storage;
 
-use League\Flysystem\Adapter\Local;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use PhpCollective\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException;
 use PhpCollective\Infrastructure\Storage\StorageAdapterFactory;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;
@@ -37,7 +37,7 @@ class StorageAdapterFactoryTest extends TestCase
             'root' => $this->testPath,
         ]);
 
-        $this->assertInstanceOf(Local::class, $result);
+        $this->assertInstanceOf(LocalFilesystemAdapter::class, $result);
     }
 
     /**

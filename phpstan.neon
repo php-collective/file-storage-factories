@@ -5,4 +5,3 @@ parameters:
 	checkMissingIterableValueType: false
 	checkGenericClassInNonGenericObjectType: false
 	ignoreErrors:
-		- '#Call to an undefined static method .+BlobRestProxy::createBlobService\(\).#'
