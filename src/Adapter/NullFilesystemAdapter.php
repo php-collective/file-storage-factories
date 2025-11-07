@@ -31,7 +31,7 @@ class NullFilesystemAdapter implements FilesystemAdapter
 
     /**
      * @param string $path
-     * @param $contents
+     * @param resource $contents
      * @param \League\Flysystem\Config $config
      *
      * @return void

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 /**
  * Copyright (c) Florian Krämer (https://florian-kraemer.net)
@@ -12,7 +12,7 @@
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-namespace PhpCollective\Storage\Test\TestCase\Storage\Factories;
+namespace PhpCollective\Storage\Test\TestCase\Storage\Exception;
 
 use PhpCollective\Infrastructure\Storage\Exception\AdapterFactoryNotFoundException;
 use PhpCollective\Storage\Test\TestCase\StorageTestCase as TestCase;

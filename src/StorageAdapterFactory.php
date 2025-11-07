@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 /**
  * Copyright (c) Florian Krämer (https://florian-kraemer.net)
@@ -24,7 +24,7 @@ use Psr\Container\ContainerInterface;
 class StorageAdapterFactory implements StorageAdapterFactoryInterface
 {
     /**
-     * @var \Psr\Container\ContainerInterface
+     * @var \Psr\Container\ContainerInterface|null
      */
     protected ?ContainerInterface $container;
 
@@ -46,7 +46,7 @@ class StorageAdapterFactory implements StorageAdapterFactoryInterface
      */
     public function buildStorageAdapter(
         string $adapterClass,
-        array $options
+        array $options,
     ): FilesystemAdapter {
         /** @var class-string<\PhpCollective\Infrastructure\Storage\Factories\FactoryInterface> $adapterClass */
         $adapterClass = $this->checkAndResolveAdapterClass($adapterClass);

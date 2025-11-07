@@ -8,20 +8,20 @@ on:
 jobs:
   testsuite:
     name: Unittests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.1', '8.3']
+        php-version: ['8.1', '8.5']
         dependencies: ['highest']
         include:
             - php-version: '8.1'
               dependencies: 'lowest'
-            - php-version: '8.3'
+            - php-version: '8.5'
               dependencies: 'highest'
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -51,10 +51,10 @@ jobs:
 
   cs-stan:
     name: Coding Standard & Static Analysis
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -68,7 +68,7 @@ jobs:
       run: composer install
 
     - name: Run phpcs
-      run: vendor/bin/phpcs --version && vendor/bin/phpcs --report=checkstyle | cs2pr
+      run: vendor/bin/phpcs --report=checkstyle | cs2pr
 
     - name: Run phpstan
-      run: vendor/bin/phpstan -V && vendor/bin/phpstan analyze --error-format=github
+      run: vendor/bin/phpstan analyze --error-format=github
