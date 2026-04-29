@@ -23,7 +23,7 @@ use Spatie\FlysystemDropbox\DropboxAdapter;
  */
 class DropboxFactory extends AbstractFactory
 {
-    protected string $alias = 'null';
+    protected string $alias = 'dropbox';
 
     protected string $package = 'spatie/flysystem-dropbox';
 
@@ -38,6 +38,7 @@ class DropboxFactory extends AbstractFactory
      */
     public function build(array $config): FilesystemAdapter
     {
+        $this->availabilityCheck();
         $config += $this->defaults;
         $client = new Client($config['authToken']);
 

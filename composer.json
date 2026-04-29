@@ -14,7 +14,7 @@
         "sftp",
         "file"
     ],
-    "homepage": "https://github.com/burzum/storage-factory",
+    "homepage": "https://github.com/php-collective/file-storage-factories",
     "license": "MIT",
     "authors": [
         {

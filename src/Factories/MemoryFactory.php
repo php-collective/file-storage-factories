@@ -33,6 +33,8 @@ class MemoryFactory extends AbstractFactory
      */
     public function build(array $config): FilesystemAdapter
     {
+        $this->availabilityCheck();
+
         return new InMemoryFilesystemAdapter();
     }
 }

@@ -17,4 +17,4 @@ In the underlying Flysystem implementation some adapters are more or less comple
 
 ## Support
 
-For bugs and feature requests, please use the [issues](https://github.com/php-collective/file-storage/issues) section of this repository.
+For bugs and feature requests, please use the [issues](https://github.com/php-collective/file-storage-factories/issues) section of this repository.

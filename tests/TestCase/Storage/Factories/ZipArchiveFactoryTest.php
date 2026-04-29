@@ -37,4 +37,28 @@ class ZipArchiveFactoryTest extends TestCase
         ]);
         $this->assertInstanceOf(ZipArchiveAdapter::class, $adapter);
     }
+
+    /**
+     * @return void
+     */
+    public function testAvailabilityCheckIsCalled(): void
+    {
+        $factory = new class extends ZipArchiveFactory {
+            public bool $called = false;
+
+            public function availabilityCheck(): void
+            {
+                $this->called = true;
+            }
+        };
+
+        $file = $this->tmp . DIRECTORY_SEPARATOR . 'archive-availability.test';
+        touch($file);
+
+        $factory->build([
+            'location' => $file,
+        ]);
+
+        $this->assertTrue($factory->called);
+    }
 }

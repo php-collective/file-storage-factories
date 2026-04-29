@@ -32,4 +32,23 @@ class MemoryFactoryTest extends TestCase
         $result = $factory->build([]);
         $this->assertInstanceOf(InMemoryFilesystemAdapter::class, $result);
     }
+
+    /**
+     * @return void
+     */
+    public function testAvailabilityCheckIsCalled(): void
+    {
+        $factory = new class extends MemoryFactory {
+            public bool $called = false;
+
+            public function availabilityCheck(): void
+            {
+                $this->called = true;
+            }
+        };
+
+        $factory->build([]);
+
+        $this->assertTrue($factory->called);
+    }
 }
