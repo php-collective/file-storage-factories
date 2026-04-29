@@ -40,20 +40,40 @@ class AzureFactory extends AbstractFactory
     /**
      * @inheritDoc
      */
-    public function build($config): FilesystemAdapter
+    public function build(array $config): FilesystemAdapter
     {
         $this->availabilityCheck();
         $this->checkConfig($config);
 
-        $endpoint = sprintf(
-            $this->endpoint,
-            base64_encode($config['accountName']),
-            base64_encode($config['apiKey']),
+        $client = $this->createBlobService(
+            $this->buildConnectionString($config),
         );
 
-        $client = BlobRestProxy::createBlobService($endpoint);
-
         return new AzureBlobStorageAdapter($client, $config['accountName']);
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     *
+     * @return string
+     */
+    protected function buildConnectionString(array $config): string
+    {
+        return sprintf(
+            $this->endpoint,
+            $config['accountName'],
+            $config['apiKey'],
+        );
+    }
+
+    /**
+     * @param string $connectionString
+     *
+     * @return \MicrosoftAzure\Storage\Blob\BlobRestProxy
+     */
+    protected function createBlobService(string $connectionString): BlobRestProxy
+    {
+        return BlobRestProxy::createBlobService($connectionString);
     }
 
     /**
@@ -66,7 +86,7 @@ class AzureFactory extends AbstractFactory
     protected function checkConfig(array $config): void
     {
         if (empty($config['accountName'])) {
-            throw FactoryConfigException::withMissingKey('apiKey', $this);
+            throw FactoryConfigException::withMissingKey('accountName', $this);
         }
 
         if (empty($config['apiKey'])) {

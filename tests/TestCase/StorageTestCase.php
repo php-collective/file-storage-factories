@@ -29,6 +29,11 @@ class StorageTestCase extends TestCase
     /**
      * @var string
      */
+    protected string $testPath = '';
+
+    /**
+     * @var string
+     */
     protected string $storageRoot = '';
 
     /**

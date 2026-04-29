@@ -41,6 +41,9 @@ class WebDavFactory extends AbstractFactory
      */
     public function build(array $config): FilesystemAdapter
     {
+        $this->availabilityCheck();
+        $config += $this->defaults;
+
         return new WebDAVAdapter(new Client($config));
     }
 }

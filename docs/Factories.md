@@ -6,7 +6,7 @@ In the underlying Flysystem implementation some adapters are more or less comple
 
 The factories will always return new instances. Use the `StorageService`, the `AdapterCollection` or your own way of keeping a list of instances.
 
-For now the underlying Flysystem implementation is set to ^1.0 because it simply provides more adapters for now. This might change in a future major release of this library.
+This package targets Flysystem v3.
 
 ## Factories
 
@@ -29,11 +29,13 @@ https://github.com/thephpleague/flysystem-aws-s3-v3
 
 ### Azure
 
-https://github.com/thephpleague/flysystem-azure
+https://github.com/thephpleague/flysystem-azure-blob-storage
 
 **Options**
  * **accountName**: Name of the account
  * **apiKey**: Your API key
+
+This adapter currently depends on the legacy Microsoft Azure SDK through Flysystem's Azure package. If you need a newer Azure integration strategy, consider providing a custom factory.
 
 ### Dropbox
 
@@ -41,19 +43,6 @@ https://github.com/spatie/flysystem-dropbox
 
 **Options**
  * **authToken**: Auth Token
-
-### FtpFactory
-
-**Options**
- * **host**: Host, required
- * **username**: Username, required
- * **password**: Password, required
- * **port**: Port, default 21
- * **root**: Root folder
- * **passive**: Boolean, default true
- * **ssl**: Boolean, default true
- * **timeout**: Timeout in seconds, default 30
- * **ignorePassiveAddress**: Boolean, default false
 
 ### Local
 
@@ -72,41 +61,6 @@ https://flysystem.thephpleague.com/v1/docs/adapter/null-test/
 
 No options
 
-### Rackspace
-
-https://github.com/thephpleague/flysystem-rackspace
-
-**Options**
- * **username**: Required
- * **apiKey**: Required
- * **identityEndpoint**: Default Rackspace::UK_IDENTITY_ENDPOINT
- * **objectStoreService**: Default 'cloudFiles'
- * **serviceRegion**: Default 'LON'
- * **container**: Default 'flysystem'
-
-### Replica
-
-https://github.com/thephpleague/flysystem-replicate-adapter
-
-**Options**:
- * **source** A source adapter instance
- * **target** The adapter to replicate to
-
-### SFTP
-
-https://github.com/thephpleague/flysystem-sftp
-
-**Options**:
- * **host**: Required
- * **port**: Default, 22
- * **username**: Required
- * **password**: Required
- * **privateKey**: Required
- * **passphrase**: Required
- * **root**: Default '/'
- * **timeout**: => Dfault 10
- * **directoryPerm**: => Default 0755
-
 ### WebDAV
 
  * https://github.com/thephpleague/flysystem-webdav
@@ -114,15 +68,19 @@ https://github.com/thephpleague/flysystem-sftp
 
 **Options**:
  * **baseUri**: Required
- * **userName**: Required
- * **password**: Required
- * **proxy**: Required
+ * **userName**: Optional
+ * **password**: Optional
+ * **proxy**: Optional
 
 ### Zip Archive
 
-https://flysystem.thephpleague.com/v1/docs/adapter/zip-archive/
+https://github.com/thephpleague/flysystem-ziparchive
 
-No options
+**Options**
+ * **location**: Path to the archive file
+ * **root**: Root path inside the archive, default ''
+ * **mimeTypeDetector**: Custom mime type detector, default null
+ * **visibility**: Visibility converter, default null
 
 ## Implementing your own Factory
 

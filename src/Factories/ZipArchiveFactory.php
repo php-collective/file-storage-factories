@@ -34,6 +34,8 @@ class ZipArchiveFactory extends AbstractFactory
      */
     public function build(array $config): FilesystemAdapter
     {
+        $this->availabilityCheck();
+
         $defaults = [
             'location' => null,
             'root' => '',

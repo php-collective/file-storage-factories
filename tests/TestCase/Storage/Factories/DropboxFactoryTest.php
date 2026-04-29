@@ -30,6 +30,27 @@ class DropboxFactoryTest extends TestCase
     {
         $factory = new DropboxFactory();
         $adapter = $factory->build([]);
+
+        $this->assertSame('dropbox', $factory->alias());
         $this->assertInstanceOf(DropboxAdapter::class, $adapter);
+    }
+
+    /**
+     * @return void
+     */
+    public function testAvailabilityCheckIsCalled(): void
+    {
+        $factory = new class extends DropboxFactory {
+            public bool $called = false;
+
+            public function availabilityCheck(): void
+            {
+                $this->called = true;
+            }
+        };
+
+        $factory->build([]);
+
+        $this->assertTrue($factory->called);
     }
 }

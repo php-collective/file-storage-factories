@@ -34,4 +34,25 @@ class WebDavFactoryTest extends TestCase
         ]);
         $this->assertInstanceOf(WebDAVAdapter::class, $adapter);
     }
+
+    /**
+     * @return void
+     */
+    public function testAvailabilityCheckIsCalled(): void
+    {
+        $factory = new class extends WebDavFactory {
+            public bool $called = false;
+
+            public function availabilityCheck(): void
+            {
+                $this->called = true;
+            }
+        };
+
+        $factory->build([
+            'baseUri' => '/',
+        ]);
+
+        $this->assertTrue($factory->called);
+    }
 }
